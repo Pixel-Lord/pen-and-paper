@@ -5,25 +5,25 @@ using System;
 
 namespace PenAndPaper.NUnit
 {
-    [TestFixture]
-    public class HomeControllerTest
+  [TestFixture]
+  public class HomeControllerTest
+  {
+    [SetUp]
+    public void TestInit() { }
+
+    [TearDown]
+    public void TestTeardown() { }
+
+    [Test]
+    [Category("Controller")]
+    public void HomeIndexTest()
     {
-        [SetUp]
-        public void TestInit() { }
+      var controller = new HomeController();
 
-        [TearDown]
-        public void TestTeardown() { }
+      var result = controller.Index() as ViewResult;
 
-        [Test]
-        [Category("Controller")]
-        public void HomeIndexTest()
-        {
-            var controller = new HomeController();
-
-            var result = controller.Index() as ViewResult;
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual("Index", result.ViewName);
-        }
+      Assert.IsNotNull(result);
+      Assert.AreEqual("Index", result.ViewName);
     }
+  }
 }
